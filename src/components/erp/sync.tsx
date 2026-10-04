@@ -16,7 +16,6 @@ import {
   ArrowDownToLine,
   ArrowUpFromLine,
   ChevronRight,
-  Zap,
   Activity,
   Loader2,
   ArrowDownUp,
@@ -790,7 +789,7 @@ export default function SyncDashboard() {
                 </>
               ) : (
                 <>
-                  <Zap size={14} />
+                  <RefreshCw size={14} />
                   Sync Now
                 </>
               )}

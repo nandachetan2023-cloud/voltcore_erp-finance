@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "VoltCore ERP — Power Plant Contractor HRMS",
   description: "Enterprise Resource Planning system for power plant contractors. HR, Payroll, Safety, Operations.",
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/logo.svg",
   },
 };
 

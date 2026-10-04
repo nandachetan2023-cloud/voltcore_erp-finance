@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, Component, type ReactNode } from 'rea
 import dynamic from 'next/dynamic';
 import {
   Building2, Users, ShoppingCart, CreditCard, FolderKanban, Package, Wrench,
-  TrendingUp, Briefcase, Settings, MessageSquare, BookOpen, Zap,
+  TrendingUp, Briefcase, Settings, MessageSquare, BookOpen, LayoutDashboard,
   UserCog, HardHat, ClipboardList, CalendarDays, RotateCcw, GraduationCap,
   Search, IndianRupee, Receipt, FileText, MapPin, ShieldAlert, Handshake,
   BarChart3, ShoppingBag, TimerReset, Menu, X, Bell, ChevronRight, ChevronDown,
@@ -16,7 +16,7 @@ import {
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Building2, Users, ShoppingCart, CreditCard, FolderKanban, Package, Wrench,
-  TrendingUp, Briefcase, Settings: Settings, MessageSquare, BookOpen, Zap,
+  TrendingUp, Briefcase, Settings: Settings, MessageSquare, BookOpen, LayoutDashboard,
   UserCog, HardHat, ClipboardList, CalendarDays, RotateCcw, GraduationCap,
   Search, IndianRupee, Receipt, FileText, MapPin, ShieldAlert, Handshake,
   BarChart3, ShoppingBag, TimerReset, ArrowDownCircle, ArrowUpCircle, FileEdit,
@@ -169,7 +169,7 @@ function ModuleRenderer({ moduleKey }: { moduleKey: string }) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
-          <Zap size={36} className="text-[#5a6878] mx-auto mb-2" />
+          <LayoutDashboard size={36} className="text-[#5a6878] mx-auto mb-2" />
           <p className="text-[12px] text-[#5a6878]">Module not found</p>
           <button className="vc-btn-primary mt-3 text-[11px]" onClick={() => setActiveModule('dashboard')}>Back to Dashboard</button>
         </div>
@@ -190,7 +190,7 @@ function ModuleGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
       {MAIN_MODULES.map((mod) => {
-        const Icon = ICON_MAP[mod.icon] || Zap;
+        const Icon = ICON_MAP[mod.icon] || LayoutDashboard;
         const hasSubModules = SUB_MODULES[mod.id] && SUB_MODULES[mod.id].length > 0;
         return (
           <button key={mod.id} onClick={() => setActiveModule(mod.id as any)}
@@ -217,7 +217,7 @@ function SubModuleGrid({ moduleId }: { moduleId: string }) {
     <div className="p-4">
       <div className="flex items-center gap-3 mb-5">
         {parentInfo && (() => {
-          const PIcon = ICON_MAP[parentInfo.icon] || Zap;
+          const PIcon = ICON_MAP[parentInfo.icon] || LayoutDashboard;
           return <div className="w-10 h-10 bg-[#f5a623]/10 rounded-xl flex items-center justify-center"><PIcon size={20} className="text-[#f5a623]" /></div>;
         })()}
         <div>
@@ -227,7 +227,7 @@ function SubModuleGrid({ moduleId }: { moduleId: string }) {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {items.map((item) => {
-          const Icon = ICON_MAP[item.icon] || Zap;
+          const Icon = ICON_MAP[item.icon] || LayoutDashboard;
           return (
             <button key={item.id} onClick={() => setActiveModule(item.id as any)}
               className="group bg-[#161c24] border border-[#252e3a] rounded-xl p-5 text-center hover:border-[#f5a623]/40 transition-all duration-200 hover:shadow-lg hover:shadow-[#f5a623]/5">
@@ -274,7 +274,7 @@ function Sidebar() {
               <div className="mx-3 my-2 border-t border-[#252e3a]" />
               <div className="text-[9px] tracking-[2px] uppercase text-[#f5a623] font-bold px-4 py-2">{MODULE_CONFIG[isSubNav ? activeParentModule : activeModule]?.title || activeModule}</div>
               {isSubNav ? subModules.map(item => {
-                const Icon = ICON_MAP[item.icon] || Zap;
+                const Icon = ICON_MAP[item.icon] || LayoutDashboard;
                 return (
                   <button key={item.id} onClick={() => { setActiveModule(item.id as any); setSidebarOpen(false); }}
                     className={`w-full flex items-center gap-2 px-4 py-[7px] text-left text-[12px] font-medium transition-all duration-150 border-l-[3px] ${activeModule === item.id ? 'text-[#f5a623] border-l-[#f5a623] bg-[#f5a623]/7' : 'text-[#8899aa] border-l-transparent hover:text-[#e2e8f0] hover:bg-[#141920]'}`}>
@@ -285,7 +285,7 @@ function Sidebar() {
                 );
               }) : (() => {
                 const modInfo = MAIN_MODULE_MAP[activeModule];
-                const Icon = ICON_MAP[modInfo?.icon || ''] || Zap;
+                const Icon = ICON_MAP[modInfo?.icon || ''] || LayoutDashboard;
                 return (
                   <button className="w-full flex items-center gap-2 px-4 py-[7px] text-left text-[12px] font-medium text-[#f5a623] border-l-[3px] border-l-[#f5a623] bg-[#f5a623]/7">
                     <Icon size={14} className="w-4 text-center shrink-0" /><span className="flex-1">{modInfo?.label || activeModule}</span>
@@ -297,7 +297,7 @@ function Sidebar() {
           ) : (
             <button onClick={() => setActiveModule('dashboard')}
               className={`w-full flex items-center gap-2 px-4 py-[7px] text-left text-[12px] font-medium transition-all duration-150 border-l-[3px] ${activeModule === 'dashboard' ? 'text-[#f5a623] border-l-[#f5a623] bg-[#f5a623]/7' : 'text-[#8899aa] border-l-transparent hover:text-[#e2e8f0] hover:bg-[#141920]'}`}>
-              <Zap size={14} className="w-4 text-center shrink-0" /><span>Dashboard</span>
+              <LayoutDashboard size={14} className="w-4 text-center shrink-0" /><span>Dashboard</span>
             </button>
           )}
         </div>

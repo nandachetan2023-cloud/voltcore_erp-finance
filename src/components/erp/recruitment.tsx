@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Briefcase, Users, Send, UserCheck, Plus, Pencil,
-  Trash2, Loader2, AlertTriangle, Zap, CheckCircle2,
+  Trash2, Loader2, AlertTriangle, CheckCircle2,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useERPStore } from '@/store/erp-store';
@@ -64,7 +64,7 @@ function statusBadge(s: string) {
 }
 
 function priorityIcon(p: string) {
-  if (p === 'Urgent') return <Zap size={10} className="text-[#ff3d3d]" />;
+  if (p === 'Urgent') return <AlertTriangle size={10} className="text-[#ff3d3d]" />;
   return null;
 }
 
